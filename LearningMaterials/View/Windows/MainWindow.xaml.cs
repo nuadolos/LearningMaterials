@@ -22,6 +22,8 @@ namespace LearningMaterials
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Конструктор окна MainWindow
+
         public MainWindow()
         {
             InitializeComponent();
@@ -29,5 +31,24 @@ namespace LearningMaterials
             MainFrame.Navigate(new ViewingDate());
             Transition.MainFrame = MainFrame;
         }
+
+        #endregion
+
+        #region Отслеживание появления кнопки "Назад"
+
+        private void MainFrame_ContentRendered(object sender, EventArgs e)
+        {
+            if (Transition.MainFrame.CanGoBack)
+                BtnBack.Visibility = Visibility.Visible;
+            else
+                BtnBack.Visibility = Visibility.Hidden;
+        }
+
+        private void BtnBack_Click(object sender, RoutedEventArgs e)
+        {
+            Transition.MainFrame.GoBack();
+        }
+
+        #endregion
     }
 }

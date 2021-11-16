@@ -53,12 +53,7 @@
                             <RowDefinition Height="30"></RowDefinition>
                         </Grid.RowDefinitions>
 
-                        <TextBlock x:Name="StringPath" Visibility="Collapsed" Text="{Binding Image, StringFormat=../Picture/{0}}"></TextBlock>
-                        <Image HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Stretch="Uniform">
-                            <Image.Source>
-                                <Binding Path="Text" StringFormat="..//{0}" ElementName="StringPath"></Binding>
-                            </Image.Source>
-                        </Image>
+                        <Image Source="{Binding Image}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Stretch="Uniform"></Image>
 
                         <TextBlock Text="{Binding Name, StringFormat=Название: {0}}" Grid.Row="1"></TextBlock>
                         <TextBlock Text="{Binding CreateDate, StringFormat=Создание записи: {0:d}}" Grid.Row="2"></TextBlock>
@@ -69,7 +64,7 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Button Content="Добавить" Grid.Row="2" HorizontalAlignment="Left" FontSize="14"></Button>
+        <Button Content="Добавить" Grid.Row="2" HorizontalAlignment="Left" FontSize="14" Name="BtnAdd" Click="BtnAdd_Click"></Button>
         
         <WrapPanel Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button Name="BtnPreviousPage" Click="BtnPreviousPage_Click" Width="20" Height="20" Content="&lt;" Background="Transparent" BorderBrush="Transparent" Visibility="Hidden"></Button>

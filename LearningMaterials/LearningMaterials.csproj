@@ -65,6 +65,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="View\Pages\AddEditMaterial.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\ViewingDate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -103,6 +107,9 @@
     </Compile>
     <Compile Include="Utils\NavigateList.cs" />
     <Compile Include="Utils\Transition.cs" />
+    <Compile Include="View\Pages\AddEditMaterial.xaml.cs">
+      <DependentUpon>AddEditMaterial.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\ViewingDate.xaml.cs">
       <DependentUpon>ViewingDate.xaml</DependentUpon>
     </Compile>
@@ -163,6 +170,7 @@
       <LastGenOutput>LearnBase.cs</LastGenOutput>
     </Content>
     <Resource Include="View\Picture\book1.png" />
+    <Resource Include="View\Picture\fact1.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

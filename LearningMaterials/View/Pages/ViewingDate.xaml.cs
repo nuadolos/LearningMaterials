@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LearningMaterials.Model;
 using LearningMaterials.Utils;
+using LearningMaterials.View.Pages;
 
 namespace LearningMaterials.View.Pages
 {
@@ -22,8 +23,14 @@ namespace LearningMaterials.View.Pages
     /// </summary>
     public partial class ViewingDate : Page
     {
+        #region Закрытые свойства и переменный
+
         private List<Learn> LearnList { get { return Transition.Context.Learn.ToList(); } }
         private NavigateList navigate = new NavigateList();
+
+        #endregion
+
+        #region Коструктор страницы ViewingDate
 
         public ViewingDate()
         {
@@ -40,6 +47,8 @@ namespace LearningMaterials.View.Pages
 
             ViewMaterials.ItemsSource = LearnList;
         }
+
+        #endregion
 
         #region Сортировка и фильтрация ViewMaterials
 
@@ -205,5 +214,10 @@ namespace LearningMaterials.View.Pages
         }
 
         #endregion
+
+        private void BtnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            Transition.MainFrame.Navigate(new AddEditMaterial());
+        }
     }
 }

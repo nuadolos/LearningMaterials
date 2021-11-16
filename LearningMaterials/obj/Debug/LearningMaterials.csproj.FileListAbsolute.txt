@@ -23,3 +23,5 @@ C:\Users\nuadolos\source\repos\LearningMaterials\LearningMaterials\bin\Debug\Ent
 C:\Users\nuadolos\source\repos\LearningMaterials\LearningMaterials\bin\Debug\ru\EntityFramework.resources.dll
 C:\Users\nuadolos\source\repos\LearningMaterials\LearningMaterials\obj\Debug\LearningMaterials.csproj.CopyComplete
 C:\Users\nuadolos\Source\Repos\LearningMaterials\LearningMaterials\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
+C:\Users\nuadolos\Source\Repos\LearningMaterials\LearningMaterials\obj\Debug\View\Pages\AddEditMaterial.g.cs
+C:\Users\nuadolos\Source\Repos\LearningMaterials\LearningMaterials\obj\Debug\View\Pages\AddEditMaterial.baml

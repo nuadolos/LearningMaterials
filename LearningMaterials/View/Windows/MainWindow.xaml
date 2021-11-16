@@ -1,0 +1,20 @@
+﻿<Window x:Class="LearningMaterials.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LearningMaterials"
+        mc:Ignorable="d"
+        Title="MainWindow" Icon="../../Resources/lib_image.ico" Height="450" Width="800">
+    <Grid Background="LightCyan">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Библиотека" FontSize="36"/>
+        <Image Source="../../Resources/lib_image.png" HorizontalAlignment="Left" Stretch="Uniform"></Image>
+
+        <Frame Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1" Background="LightBlue"></Frame>
+    </Grid>
+</Window>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище LearningMaterialsModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Learn">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Link" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreateDate" Type="date" Nullable="false" />
+    <Property Name="DateReading" Type="date" />
+    <Property Name="Image" Type="nvarchar" MaxLength="200" />
+    <Property Name="SourceLoreId" Type="int" Nullable="false" />
+    <Property Name="IsStudying" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SourceLore">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Learn_SourceLore">
+    <End Role="SourceLore" Type="Self.SourceLore" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Learn" Type="Self.Learn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SourceLore">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Learn">
+        <PropertyRef Name="SourceLoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище LearningMaterialsModelContainer">
+    <EntitySet Name="Learn" EntityType="Self.Learn" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SourceLore" EntityType="Self.SourceLore" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Learn_SourceLore" Association="Self.FK_Learn_SourceLore">
+      <End Role="SourceLore" EntitySet="SourceLore" />
+      <End Role="Learn" EntitySet="Learn" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

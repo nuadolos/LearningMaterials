@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LearningMaterialsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="LearnEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Learn" EntityType="LearningMaterialsModel.Learn" />
+    <EntitySet Name="SourceLore" EntityType="LearningMaterialsModel.SourceLore" />
+    <EntitySet Name="sysdiagrams" EntityType="LearningMaterialsModel.sysdiagrams" />
+    <AssociationSet Name="FK_Learn_SourceLore" Association="LearningMaterialsModel.FK_Learn_SourceLore">
+      <End Role="SourceLore" EntitySet="SourceLore" />
+      <End Role="Learn" EntitySet="Learn" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Learn">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Link" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DateReading" Type="DateTime" Precision="0" />
+    <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="SourceLoreId" Type="Int32" Nullable="false" />
+    <Property Name="IsStudying" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="SourceLore" Relationship="LearningMaterialsModel.FK_Learn_SourceLore" FromRole="Learn" ToRole="SourceLore" />
+  </EntityType>
+  <EntityType Name="SourceLore">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Learn" Relationship="LearningMaterialsModel.FK_Learn_SourceLore" FromRole="SourceLore" ToRole="Learn" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Learn_SourceLore">
+    <End Type="LearningMaterialsModel.SourceLore" Role="SourceLore" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="LearningMaterialsModel.Learn" Role="Learn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SourceLore">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Learn">
+        <PropertyRef Name="SourceLoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

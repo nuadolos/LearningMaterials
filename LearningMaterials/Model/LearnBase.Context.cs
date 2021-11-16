@@ -15,24 +15,11 @@ namespace LearningMaterials.Model
     
     public partial class LearnEntities : DbContext
     {
-        private static LearnEntities _context;
-
         public LearnEntities()
             : base("name=LearnEntities")
         {
         }
 
-        public static LearnEntities Context
-        {
-            get
-            {
-                if (_context == null)
-                    _context = new LearnEntities();
-
-                return _context;
-            }
-        }
-    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

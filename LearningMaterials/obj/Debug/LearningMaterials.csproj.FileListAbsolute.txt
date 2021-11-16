@@ -15,7 +15,6 @@ C:\Users\nuadolos\source\repos\LearningMaterials\LearningMaterials\obj\Debug\Lea
 C:\Users\nuadolos\source\repos\LearningMaterials\LearningMaterials\obj\Debug\View\Pages\ViewingDate.g.cs
 C:\Users\nuadolos\source\repos\LearningMaterials\LearningMaterials\obj\Debug\View\Pages\ViewingDate.baml
 C:\Users\nuadolos\source\repos\LearningMaterials\LearningMaterials\obj\Debug\App.baml
-C:\Users\nuadolos\source\repos\LearningMaterials\LearningMaterials\obj\Debug\Button.baml
 C:\Users\nuadolos\source\repos\LearningMaterials\LearningMaterials\obj\Debug\LearningMaterials_Content.g.cs
 C:\Users\nuadolos\source\repos\LearningMaterials\LearningMaterials\bin\Debug\EntityFramework.dll
 C:\Users\nuadolos\source\repos\LearningMaterials\LearningMaterials\bin\Debug\EntityFramework.SqlServer.dll

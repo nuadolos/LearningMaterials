@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:LearningMaterials.View.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="650" d:DesignWidth="1200"
-      Title="ViewingDate">
+      Title="ViewingDate" IsVisibleChanged="Page_IsVisibleChanged">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -36,18 +36,18 @@
         <ComboBox Grid.Column="2" HorizontalAlignment="Right" Name="SourceBox" DisplayMemberPath="Name" SelectedValuePath="Id" SelectionChanged="SourceBox_SelectionChanged"></ComboBox>
 
         <TextBlock Grid.Row="1" Grid.ColumnSpan="3" Text="Таких записей не существует!" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-        <ListView Name="ViewMaterials" Grid.Row="1" Grid.ColumnSpan="3">
+        <ListView Name="ViewMaterials" Grid.Row="1" Grid.ColumnSpan="3" MouseDoubleClick="ViewMaterials_MouseDoubleClick" ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"></WrapPanel>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="1000"></WrapPanel>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Height="400" Width="300">
+                    <Grid Height="420" Width="300">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"></RowDefinition>
-                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition Height="50"></RowDefinition>
                             <RowDefinition Height="30"></RowDefinition>
                             <RowDefinition Height="30"></RowDefinition>
                             <RowDefinition Height="30"></RowDefinition>
@@ -55,7 +55,7 @@
 
                         <Image Source="{Binding Image}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Stretch="Uniform"></Image>
 
-                        <TextBlock Text="{Binding Name, StringFormat=Название: {0}}" Grid.Row="1"></TextBlock>
+                        <TextBlock Text="{Binding Name, StringFormat=Название: {0}}" TextWrapping="Wrap" Grid.Row="1" TextAlignment="Center"></TextBlock>
                         <TextBlock Text="{Binding CreateDate, StringFormat=Создание записи: {0:d}}" Grid.Row="2"></TextBlock>
                         <TextBlock Text="{Binding SourceLore.Name, StringFormat=Источник: {0}}" Grid.Row="3"></TextBlock>
                         <TextBlock Text="{Binding StudiedText, StringFormat=Статус: {0}}" Grid.Row="4"></TextBlock>

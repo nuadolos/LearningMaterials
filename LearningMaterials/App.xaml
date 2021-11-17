@@ -13,7 +13,7 @@
                 <Trigger Property="Text" Value="Статус: Не изучен">
                     <Setter Property="Foreground" Value="Red"></Setter>
                 </Trigger>
-                <Trigger Property="Text" Value="Изучен">
+                <Trigger Property="Text" Value="Статус: Изучен">
                     <Setter Property="Foreground" Value="Green"></Setter>
                 </Trigger>
             </Style.Triggers>
@@ -32,6 +32,7 @@
             <Setter Property="Width" Value="200"></Setter>
             <Setter Property="Height" Value="30"></Setter>
             <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="Padding" Value="4"></Setter>
         </Style>
         <Style TargetType="ComboBox">
             <Setter Property="HorizontalAlignment" Value="Left"></Setter>

@@ -155,10 +155,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Resource Include="Resources\lib_image.ico" />
-    <Resource Include="Resources\lib_image.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Model\LearnBase.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>LearnBase.Context.cs</LastGenOutput>
@@ -169,6 +165,8 @@
       <DependentUpon>LearnBase.edmx</DependentUpon>
       <LastGenOutput>LearnBase.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\book_ico.ico" />
+    <Resource Include="Resources\book_png.png" />
     <Resource Include="View\Picture\book1.png" />
     <Resource Include="View\Picture\fact1.png" />
   </ItemGroup>

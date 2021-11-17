@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LearningMaterials"
         mc:Ignorable="d"
-        Title="MainWindow" Icon="../../Resources/lib_image.ico" Height="650" Width="1200" MinHeight="650" MinWidth="1200">
-    <Grid Background="LightCyan">
+        Title="MainWindow" Icon="../../Resources/book_ico.ico" Height="650" Width="1200" MinHeight="650" MinWidth="1200">
+    <Grid Background="DarkOrange">
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <TextBlock Text="Библиотека" FontSize="36"/>
-        <Image Source="../../Resources/lib_image.png" HorizontalAlignment="Left" Stretch="Uniform"></Image>
+        <Image Source="../../Resources/book_png.png" HorizontalAlignment="Left" Stretch="Uniform"></Image>
 
-        <Frame Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1" Background="LightBlue" ContentRendered="MainFrame_ContentRendered"></Frame>
+        <Frame Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1" Background="Orange" ContentRendered="MainFrame_ContentRendered"></Frame>
         <Button Content="Назад" HorizontalAlignment="Right" Margin="10" FontSize="16" Visibility="Hidden" Name="BtnBack" Click="BtnBack_Click"></Button>
     </Grid>
 </Window>

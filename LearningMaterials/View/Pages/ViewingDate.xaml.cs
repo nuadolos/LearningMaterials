@@ -23,7 +23,7 @@ namespace LearningMaterials.View.Pages
     /// </summary>
     public partial class ViewingDate : Page
     {
-        #region Закрытые свойства и переменный
+        #region Закрытые свойства и поля
 
         private List<Learn> LearnList { get { return Transition.Context.Learn.ToList(); } }
         private NavigateList navigate = new NavigateList();
@@ -215,9 +215,31 @@ namespace LearningMaterials.View.Pages
 
         #endregion
 
+        #region Переход на страницу добавления и редактирования данных
+
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            Transition.MainFrame.Navigate(new AddEditMaterial());
+            Transition.MainFrame.Navigate(new AddEditMaterial(null));
         }
+
+        private void ViewMaterials_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Transition.MainFrame.Navigate(new AddEditMaterial(ViewMaterials.SelectedItem as Learn));
+        }
+
+        #endregion
+
+        #region Обновление ViewMaterials после добавления или редактирования
+
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                Transition.Context.ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                SortingFilteringData();
+            }
+        }
+
+        #endregion
     }
 }

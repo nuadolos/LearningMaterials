@@ -1,23 +1,35 @@
 ﻿<Application x:Class="LearningMaterials.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:LearningMaterials"
+             xmlns:local="clr-namespace:LearningMaterials" xmlns:sys="clr-namespace:System;assembly=mscorlib"
              StartupUri="View/Windows/MainWindow.xaml">
     <Application.Resources>
+        <!--<sys:Double x:Key="fontSizeElements">12</sys:Double>-->
+        
         <Style TargetType="TextBlock">
             <Setter Property="HorizontalAlignment" Value="Center"></Setter>
             <Setter Property="VerticalAlignment" Value="Center"></Setter>
             <Setter Property="FontSize" Value="14"></Setter>
-            
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="ListViewTBlock">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+
             <Style.Triggers>
-                <Trigger Property="Text" Value="Статус: Не изучен">
+                <Trigger Property="Text" Value="Не изучен">
                     <Setter Property="Foreground" Value="Red"></Setter>
                 </Trigger>
-                <Trigger Property="Text" Value="Статус: Изучен">
+                <Trigger Property="Text" Value="Изучен">
                     <Setter Property="Foreground" Value="Green"></Setter>
                 </Trigger>
             </Style.Triggers>
         </Style>
+        
         <Style TargetType="Button">
             <Setter Property="HorizontalAlignment" Value="Center"></Setter>
             <Setter Property="VerticalAlignment" Value="Center"></Setter>
@@ -40,6 +52,25 @@
             <Setter Property="Width" Value="175"></Setter>
             <Setter Property="Height" Value="30"></Setter>
             <Setter Property="Margin" Value="5"></Setter>
+            <!--<Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Border Background="AntiqueWhite" BorderBrush="DarkCyan" BorderThickness="3">
+                            <Button HorizontalAlignment="Right" Width="30" Height="10" x:Name="But">
+                            </Button>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDropDownOpen" Value="False">
+                                <Setter TargetName="But" Property="Height" Value="300"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            
+            На основе данного свойства (Template) можно построить свой собстенный дизайн ComboBox
+            
+            </Setter>-->
         </Style>
     </Application.Resources>
 </Application>

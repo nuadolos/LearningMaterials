@@ -26,7 +26,7 @@ namespace LearningMaterials.View.Pages
         #region Закрытые свойства и поля
 
         private List<Learn> LearnList { get { return Transition.Context.Learn.ToList(); } }
-        private NavigateList navigate = new NavigateList();
+        private NavigateList navigate;
 
         #endregion
 
@@ -35,6 +35,8 @@ namespace LearningMaterials.View.Pages
         public ViewingDate()
         {
             InitializeComponent();
+
+            navigate = new NavigateList();
 
             var allType = Transition.Context.SourceLore.ToList();
             allType.Insert(0, new SourceLore
@@ -68,7 +70,7 @@ namespace LearningMaterials.View.Pages
             {
                 case 1:
                     {
-                        if (OrderCheck.IsChecked == false)
+                        if (!(bool)OrderCheck.IsChecked)
                             tempLearn = tempLearn.OrderBy(p => p.Name).ToList();
                         else
                             tempLearn = tempLearn.OrderByDescending(p => p.Name).ToList();
@@ -76,7 +78,7 @@ namespace LearningMaterials.View.Pages
                     }
                 case 2:
                     {
-                        if (OrderCheck.IsChecked == false)
+                        if (!(bool)OrderCheck.IsChecked)
                             tempLearn = tempLearn.OrderBy(p => p.CreateDate).ToList();
                         else
                             tempLearn = tempLearn.OrderByDescending(p => p.CreateDate).ToList();
@@ -177,30 +179,6 @@ namespace LearningMaterials.View.Pages
                 BtnNextPage.Visibility = Visibility.Hidden;
         }
 
-        private void BtnOnePage_Click(object sender, RoutedEventArgs e)
-        {
-            navigate.NumberPage = 1;
-            ControlOutList();
-        }
-
-        private void BtnTwoPage_Click(object sender, RoutedEventArgs e)
-        {
-            navigate.NumberPage = 2;
-            ControlOutList();
-        }
-
-        private void BtnThreePage_Click(object sender, RoutedEventArgs e)
-        {
-            navigate.NumberPage = 3;
-            ControlOutList();
-        }
-
-        private void BtnFourPage_Click(object sender, RoutedEventArgs e)
-        {
-            navigate.NumberPage = 4;
-            ControlOutList();
-        }
-
         private void ControlOutList()
         {
             navigate.GetIndex();
@@ -224,7 +202,10 @@ namespace LearningMaterials.View.Pages
 
         private void ViewMaterials_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Transition.MainFrame.Navigate(new AddEditMaterial(ViewMaterials.SelectedItem as Learn));
+            var tempData = ViewMaterials.SelectedItem as Learn;
+
+            if (tempData != null)
+                Transition.MainFrame.Navigate(new AddEditMaterial(ViewMaterials?.SelectedItem as Learn));
         }
 
         #endregion

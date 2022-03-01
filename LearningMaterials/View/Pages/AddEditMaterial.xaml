@@ -1,0 +1,54 @@
+﻿<Page x:Class="LearningMaterials.View.Pages.AddEditMaterial"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LearningMaterials.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="650" d:DesignWidth="1200"
+      Title="Изменение записи">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Image Source="{Binding Image}" Grid.RowSpan="2" Margin="10" Stretch="Uniform" Name="DownImage"></Image>
+        
+        <TextBlock Text="Название:" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1"></TextBlock>
+        <TextBlock Text="Ссылка:" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1"></TextBlock>
+        <TextBlock Text="Ресурс:" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="2" Grid.Column="1"></TextBlock>
+        <TextBlock Text="Дата создания:" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="2"></TextBlock>
+        <TextBlock Text="Дата изучения:" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Grid.Column="2"></TextBlock>
+        <TextBlock Text="Материал изучен?" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="2" Grid.Column="2"></TextBlock>
+        <TextBlock Text="Фото:" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="2"></TextBlock>
+        <TextBlock Margin="10,125,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="2" TextWrapping="Wrap">
+            *В ручную необходимо загрузить фото <Hyperlink Click="Hyperlink_Click">на сайте</Hyperlink> и вставить выданную ссылку в поле &quot;Фото&quot;
+        </TextBlock>
+
+        <TextBox Text="{Binding Name}" Margin="10, 50" VerticalAlignment="Top" Grid.Column="1" Width="250" Height="60" TextWrapping="Wrap"></TextBox>
+        <TextBox Text="{Binding Link}" Margin="10, 50" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" Width="250" Height="60" TextWrapping="Wrap"></TextBox>
+        <ComboBox SelectedItem="{Binding SourceLore}" Margin="10, 50" VerticalAlignment="Top" Grid.Row="2" Grid.Column="1" DisplayMemberPath="Name" SelectedValuePath="Id" Name="SourceCBox"></ComboBox>
+        <TextBox Text="{Binding CreateDate, StringFormat=d}" Margin="10, 50" VerticalAlignment="Top" Grid.Column="2"></TextBox>
+        <TextBox Text="{Binding DateReading, StringFormat=d}" Margin="10, 50" VerticalAlignment="Top" Grid.Row="1" Grid.Column="2"></TextBox>
+        <ComboBox Margin="10, 50" VerticalAlignment="Top" Grid.Row="2" Grid.Column="2" Name="StudyingCBox">
+            <ComboBoxItem>
+                <TextBlock Text="Нет"></TextBlock>
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <TextBlock Text="Да"></TextBlock>
+            </ComboBoxItem>
+        </ComboBox>
+        <TextBox Text="{Binding Image}" Margin="10, 50" VerticalAlignment="Top" Grid.Row="2" Width="250" Height="60" TextWrapping="Wrap" Name="ImagePath" TextChanged="ImagePath_TextChanged"></TextBox>
+
+        <Button Content="Сохранить" Grid.Row="3" Grid.ColumnSpan="5" Name="BtnSave" Click="BtnSave_Click"></Button>
+    </Grid>
+</Page>

@@ -50,5 +50,18 @@ namespace LearningMaterials
         }
 
         #endregion
+
+        #region Пример работы с ресурсами
+
+        //double i = 2;
+        //private void btntest_Click(object sender, RoutedEventArgs e)
+        //{
+        //    //double resources = (double)this.TryFindResource("fontSizeElements");
+        //    //resources = ++i;
+
+        //    this.Resources["fontSizeElements"] = ++i;
+        //}
+
+        #endregion
     }
 }

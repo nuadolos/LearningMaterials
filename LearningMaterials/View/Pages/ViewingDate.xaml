@@ -6,73 +6,92 @@
       xmlns:local="clr-namespace:LearningMaterials.View.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="650" d:DesignWidth="1200"
-      Title="ViewingDate" IsVisibleChanged="Page_IsVisibleChanged">
+      Title="Библиотека" IsVisibleChanged="Page_IsVisibleChanged">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="71*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
 
-        <TextBox Text="Введите для поиска" Width="300" FontSize="14" Padding="4" Name="SearchBox" TextChanged="SearchBox_TextChanged" LostFocus="SearchBox_LostFocus" GotFocus="SearchBox_GotFocus"></TextBox>
-        <ComboBox Grid.Column="1" HorizontalAlignment="Right" Margin="10" Name="TypeSort" SelectionChanged="TypeSort_SelectionChanged">
-            <ComboBoxItem>
-                <TextBlock Text="Нет" Height="20" Width="100"></TextBlock>
-            </ComboBoxItem>
-            <ComboBoxItem>
-                <TextBlock Text="Название" Width="100" Height="20"></TextBlock>
-            </ComboBoxItem>
-            <ComboBoxItem>
-                <TextBlock Text="Дата добавления" Width="120" Height="25"></TextBlock>
-            </ComboBoxItem>
-        </ComboBox>
-        <CheckBox Grid.Column="2" Content="По убыванию" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" Name="OrderCheck" Checked="OrderCheck_Checked" Unchecked="OrderCheck_Unchecked"></CheckBox>
-        <ComboBox Grid.Column="2" HorizontalAlignment="Right" Name="SourceBox" DisplayMemberPath="Name" SelectedValuePath="Id" SelectionChanged="SourceBox_SelectionChanged"></ComboBox>
+        <TextBox Text="Введите для поиска" Width="300" FontSize="14" Padding="4" 
+                 Name="SearchBox" TextChanged="SearchBox_TextChanged" 
+                 LostFocus="SearchBox_LostFocus" GotFocus="SearchBox_GotFocus"/>
+        <WrapPanel HorizontalAlignment="Center">
+            <ComboBox Margin="10" 
+                      Name="TypeSort" SelectionChanged="TypeSort_SelectionChanged">
+                <ComboBoxItem>
+                    <TextBlock Text="Нет" Height="20" Width="100"></TextBlock>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <TextBlock Text="Название" Width="100" Height="20"></TextBlock>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <TextBlock Text="Дата добавления" Width="120" Height="25"></TextBlock>
+                </ComboBoxItem>
+            </ComboBox>
+            <CheckBox Content="По убыванию" FontSize="16" Margin="10" VerticalAlignment="Center"
+                      Name="OrderCheck" Checked="OrderCheck_Checked" Unchecked="OrderCheck_Unchecked"/>
+        </WrapPanel>
+        <ComboBox HorizontalAlignment="Right" DisplayMemberPath="Name" SelectedValuePath="Id"
+                  Name="SourceBox" SelectionChanged="SourceBox_SelectionChanged"/>
 
-        <TextBlock Grid.Row="1" Grid.ColumnSpan="3" Text="Таких записей не существует!" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-        <ListView Name="ViewMaterials" Grid.Row="1" Grid.ColumnSpan="3" MouseDoubleClick="ViewMaterials_MouseDoubleClick" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+        <TextBlock Grid.Row="1" Text="Таких записей не существует!" FontSize="36"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <ListView Grid.Row="1"
+                  Name="ViewMaterials" MouseDoubleClick="ViewMaterials_MouseDoubleClick"
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="1000"></WrapPanel>
+                    <WrapPanel HorizontalAlignment="Center"/>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Height="420" Width="300">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"></RowDefinition>
-                            <RowDefinition Height="50"></RowDefinition>
-                            <RowDefinition Height="30"></RowDefinition>
-                            <RowDefinition Height="30"></RowDefinition>
-                            <RowDefinition Height="30"></RowDefinition>
-                        </Grid.RowDefinitions>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListViewItem">
+                                <Border BorderBrush="#FFFFA981" BorderThickness="3" CornerRadius="4" Margin="10" 
+                                        x:Name="BorderLV">
+                                    <StackPanel Width="300">
+                                        <Border BorderBrush="#FFFF9766" BorderThickness="3"
+                                            Background="Transparent" Margin="5"
+                                            HorizontalAlignment="Center">
+                                            <Image Source="{Binding Image}" Height="250" Width="250" Stretch="Fill"/>
+                                        </Border>
 
-                        <Image Source="{Binding Image}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Stretch="Uniform"></Image>
+                                        <TextBlock Text="{Binding Name, StringFormat=Название: {0}}" Style="{StaticResource ListViewTBlock}"></TextBlock>
+                                        <TextBlock Text="{Binding CreateDate, StringFormat=Создание записи: {0:d}}" Style="{StaticResource ListViewTBlock}"></TextBlock>
+                                        <TextBlock Text="{Binding SourceLore.Name, StringFormat=Источник: {0}}" Style="{StaticResource ListViewTBlock}"></TextBlock>
 
-                        <TextBlock Text="{Binding Name, StringFormat=Название: {0}}" TextWrapping="Wrap" Grid.Row="1" TextAlignment="Center"></TextBlock>
-                        <TextBlock Text="{Binding CreateDate, StringFormat=Создание записи: {0:d}}" Grid.Row="2"></TextBlock>
-                        <TextBlock Text="{Binding SourceLore.Name, StringFormat=Источник: {0}}" Grid.Row="3"></TextBlock>
-                        <TextBlock Text="{Binding StudiedText, StringFormat=Статус: {0}}" Grid.Row="4"></TextBlock>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
+                                        <WrapPanel HorizontalAlignment="Center">
+                                            <TextBlock Text="Статус:" Style="{StaticResource ListViewTBlock}"/>
+                                            <TextBlock Text="{Binding StudiedText}" Style="{StaticResource ListViewTBlock}"/>
+                                        </WrapPanel>
+                                    </StackPanel>
+                                </Border>
+
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="BorderLV" Property="Background" Value="#FFFFB66C"></Setter>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="BorderLV" Property="Background" Value="#FFFFD4A8"></Setter>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
         </ListView>
 
         <Button Content="Добавить" Grid.Row="2" HorizontalAlignment="Left" FontSize="14" Name="BtnAdd" Click="BtnAdd_Click"></Button>
         
-        <WrapPanel Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Name="BtnPreviousPage" Click="BtnPreviousPage_Click" Width="20" Height="20" Content="&lt;" Background="Transparent" BorderBrush="Transparent" Visibility="Hidden"></Button>
-            <Button Name="BtnOnePage" Click="BtnOnePage_Click" Width="20" Height="20" Content="1" Background="Transparent" BorderBrush="Transparent"></Button>
-            <Button Name="BtnTwoPage" Click="BtnTwoPage_Click" Width="20" Height="20" Content="2" Background="Transparent" BorderBrush="Transparent"></Button>
-            <Button Name="BtnThreePage" Click="BtnThreePage_Click" Width="20" Height="20" Content="3" Background="Transparent" BorderBrush="Transparent"></Button>
-            <Button Name="BtnFourPage" Click="BtnFourPage_Click" Width="20" Height="20" Content="4" Background="Transparent" BorderBrush="Transparent"></Button>
-            <Button Name="BtnNextPage" Click="BtnNextPage_Click" Width="20" Height="20" Content=">" Background="Transparent" BorderBrush="Transparent"></Button>
+        <WrapPanel Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Button Name="BtnPreviousPage" Click="BtnPreviousPage_Click" Content="&lt;" Background="Transparent" BorderBrush="Transparent" Visibility="Hidden"></Button>
+            <Button Name="BtnNextPage" Click="BtnNextPage_Click" Content=">" Background="Transparent" BorderBrush="Transparent"></Button>
         </WrapPanel>
     </Grid>
 </Page>
